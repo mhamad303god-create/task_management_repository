@@ -5468,10 +5468,13 @@ function handleSignupStandalone(e) {
     alert('هذا البريد الإلكتروني مسجل بالفعل'); return;
   }
   users.push({ name, email, password });
-  localStorage.setItem('naseej_users', JSON.stringify(users));
-  localStorage.setItem('naseej_session', JSON.stringify({ name, email }));
-  alert('تم إنشاء الحساب بنجاح!');
-  showLoginScreen();
+    localStorage.setItem('naseej_users', JSON.stringify(users));
+    // أنشئ جلسة المستخدم وقم بتسجيل الدخول تلقائياً
+    currentUser = { name, email };
+    localStorage.setItem('naseej_session', JSON.stringify(currentUser));
+    document.getElementById('signup-screen').style.display = 'none';
+    initApp();
+    if (typeof showToast === 'function') showToast('success', 'تم إنشاء الحساب وتسجيل الدخول، مرحباً ' + name);
 }
     </script>
 </body>
