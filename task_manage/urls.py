@@ -9,7 +9,12 @@ urlpatterns = [
 ]
 
 # =========================
-# MEDIA FILES (correct place)
+# STATIC & MEDIA FILES - Development
 # =========================
 if settings.DEBUG:
+    # Serve static files from the static directory
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    # Serve media files
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    
